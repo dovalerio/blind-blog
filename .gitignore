@@ -1,0 +1,12 @@
+.env
+app/log/*
+app/tmp/*
+app/storage/*
+app/public/assets/*
+app/public/packs/*
+*.pid
+*.sock
+
+# credenciais e instruções sensíveis
+*.txt
+!app/public/robots.txt

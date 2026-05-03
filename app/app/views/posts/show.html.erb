@@ -1,0 +1,23 @@
+<% content_for :title, @post.title %>
+
+<article aria-labelledby="post-title">
+  <header class="post-header">
+    <h1 id="post-title"><%= @post.title %></h1>
+    <% if @post.published_at.present? %>
+      <p class="post-meta">
+        Publicado em
+        <time datetime="<%= @post.published_at.iso8601 %>">
+          <%= l(@post.published_at, format: :long) %>
+        </time>
+      </p>
+    <% end %>
+  </header>
+
+  <div class="post-content">
+    <%= simple_format(@post.content) %>
+  </div>
+
+  <nav aria-label="Navegação de posts">
+    <%= link_to "← Voltar para posts", posts_path %>
+  </nav>
+</article>

@@ -1,0 +1,6 @@
+<% content_for :title, "Editar: #{@post.title}" %>
+
+<section aria-labelledby="edit-post-heading">
+  <h1 id="edit-post-heading">Editar Post</h1>
+  <%= render "form", post: @post %>
+</section>

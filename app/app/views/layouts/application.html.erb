@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Terra de Cego — um blog sobre tecnologia, acessibilidade e o mundo através de outros olhos.">
+    <title><%= content_for?(:title) ? "#{yield(:title)} — Terra de Cego" : "Terra de Cego" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app %>
+  </head>
+
+  <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <header role="banner">
+      <nav aria-label="Navegação principal">
+        <div class="nav-inner">
+          <%= link_to "Terra de Cego", root_path, class: "site-title" %>
+          <ul role="list">
+            <li><%= link_to "Posts", posts_path %></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <% if notice.present? %>
+        <div role="status" aria-live="polite" class="flash flash--notice">
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div role="alert" aria-live="assertive" class="flash flash--alert">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer role="contentinfo">
+      <p>Terra de Cego &copy; <%= Time.current.year %></p>
+    </footer>
+  </body>
+</html>

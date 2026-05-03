@@ -1,0 +1,48 @@
+<%= form_with(model: [:admin, post], class: "post-form") do |f| %>
+  <% if post.errors.any? %>
+    <div role="alert" class="form-errors" aria-labelledby="errors-heading">
+      <h2 id="errors-heading">
+        <%= pluralize(post.errors.count, "erro encontrado", "erros encontrados") %>
+      </h2>
+      <ul>
+        <% post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, "Título", class: "field__label" %>
+    <%= f.text_field :title,
+          class: "field__input",
+          aria: { required: "true", describedby: post.errors[:title].any? ? "title-error" : nil },
+          required: true,
+          autofocus: true %>
+    <% if post.errors[:title].any? %>
+      <span id="title-error" class="field__error" role="alert"><%= post.errors[:title].first %></span>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "Conteúdo", class: "field__label" %>
+    <%= f.text_area :content,
+          class: "field__textarea",
+          rows: 15,
+          aria: { required: "true" },
+          required: true %>
+    <% if post.errors[:content].any? %>
+      <span class="field__error" role="alert"><%= post.errors[:content].first %></span>
+    <% end %>
+  </div>
+
+  <div class="field field--checkbox">
+    <%= f.check_box :published, class: "field__checkbox", id: "post_published" %>
+    <%= f.label :published, "Publicar post", class: "field__label field__label--checkbox", for: "post_published" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit post.new_record? ? "Criar post" : "Salvar alterações", class: "btn btn--primary" %>
+    <%= link_to "Cancelar", admin_posts_path, class: "btn btn--secondary" %>
+  </div>
+<% end %>

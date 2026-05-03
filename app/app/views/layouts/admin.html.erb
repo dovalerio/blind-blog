@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= content_for?(:title) ? "#{yield(:title)} — Admin | Terra de Cego" : "Admin | Terra de Cego" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app %>
+  </head>
+
+  <body class="admin">
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <header role="banner">
+      <nav aria-label="Navegação administrativa">
+        <div class="nav-inner">
+          <span class="site-title">Terra de Cego — Admin</span>
+          <ul role="list">
+            <li><%= link_to "Posts", admin_posts_path %></li>
+            <li><%= link_to "Ver blog", posts_path %></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <% if notice.present? %>
+        <div role="status" aria-live="polite" class="flash flash--notice"><%= notice %></div>
+      <% end %>
+      <% if alert.present? %>
+        <div role="alert" aria-live="assertive" class="flash flash--alert"><%= alert %></div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer role="contentinfo">
+      <p>Terra de Cego Admin &copy; <%= Time.current.year %></p>
+    </footer>
+  </body>
+</html>

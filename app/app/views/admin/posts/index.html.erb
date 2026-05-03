@@ -1,0 +1,50 @@
+<% content_for :title, "Gerenciar Posts" %>
+
+<section aria-labelledby="admin-posts-heading">
+  <div class="section-header">
+    <h1 id="admin-posts-heading">Gerenciar Posts</h1>
+    <%= link_to "Novo post", new_admin_post_path, class: "btn btn--primary" %>
+  </div>
+
+  <% if @posts.empty? %>
+    <p>Nenhum post criado ainda.</p>
+  <% else %>
+    <table aria-label="Lista de posts">
+      <thead>
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Status</th>
+          <th scope="col">Data</th>
+          <th scope="col"><span class="sr-only">Ações</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td>
+              <% if post.published? %>
+                <span class="badge badge--published">Publicado</span>
+              <% else %>
+                <span class="badge badge--draft">Rascunho</span>
+              <% end %>
+            </td>
+            <td>
+              <time datetime="<%= post.created_at.iso8601 %>">
+                <%= l(post.created_at, format: :short) %>
+              </time>
+            </td>
+            <td class="actions">
+              <%= link_to "Editar", edit_admin_post_path(post), aria: { label: "Editar: #{post.title}" } %>
+              <%= button_to "Remover", admin_post_path(post),
+                    method: :delete,
+                    class: "btn-link btn-link--danger",
+                    form: { "aria-label": "Remover post: #{post.title}" },
+                    data: { turbo_confirm: "Confirma remoção do post \"#{post.title}\"?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>
