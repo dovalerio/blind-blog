@@ -1,0 +1,137 @@
+<% content_for :title, "Danilo Valerio — Engenheiro de Software Sênior" %>
+
+<div class="home-container" role="main">
+
+  <%# ── Perfil ─────────────────────────────────────────── %>
+  <header class="home-profile">
+    <div class="home-avatar">
+      <img src="https://placehold.co/84x84/2a2a2a/888888?text=DV"
+           alt="Foto de perfil de Danilo Valerio"
+           width="84"
+           height="84">
+    </div>
+    <div class="home-profile-info">
+      <h1 class="home-name">Danilo Valerio</h1>
+      <p class="home-role">Engenheiro de Software Sênior</p>
+      <p class="home-bio">Engenheiro de software com foco em backend, microsserviços, acessibilidade digital, automação e cloud computing.</p>
+    </div>
+  </header>
+
+  <hr class="home-divider" aria-hidden="true">
+
+  <%# ── Especialidades ──────────────────────────────────── %>
+  <section aria-labelledby="skills-heading">
+    <h2 id="skills-heading" class="sr-only">Especialidades</h2>
+    <ul class="home-skills" role="list">
+      <% ["Java", "Kotlin", "Spring Boot", "Kafka", "Docker", "AWS", "Microsserviços", "Acessibilidade", "Automação"].each do |skill| %>
+        <li class="home-skill"><%= skill %></li>
+      <% end %>
+    </ul>
+  </section>
+
+  <hr class="home-divider" aria-hidden="true">
+
+  <%# ── Links profissionais ─────────────────────────────── %>
+  <nav aria-label="Links profissionais">
+    <ul class="home-links" role="list">
+      <li>
+        <a href="https://github.com/dovalerio"
+           class="home-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Perfil no GitHub de Danilo Valerio (abre em nova aba)">GitHub</a>
+      </li>
+      <li>
+        <a href="https://linkedin.com/in/dovalerio"
+           class="home-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Perfil no LinkedIn de Danilo Valerio (abre em nova aba)">LinkedIn</a>
+      </li>
+      <li>
+        <%= link_to "Blog", posts_path,
+              class: "home-link",
+              aria: { label: "Blog Terra de Cego — posts sobre tecnologia e acessibilidade" } %>
+      </li>
+    </ul>
+  </nav>
+
+  <hr class="home-divider" aria-hidden="true">
+
+  <%# ── Projetos ─────────────────────────────────────────── %>
+  <section aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="home-section-label">Projetos</h2>
+
+    <div class="home-projects">
+
+      <a href="https://github.com/dovalerio/jetbrains_NVDA_Addon"
+         class="home-project"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="jetbrains_NVDA_Addon — ver no GitHub (abre em nova aba)">
+        <p class="home-project-name">jetbrains_NVDA_Addon</p>
+        <p class="home-project-desc">Addon para o leitor de telas NVDA com suporte ao IntelliJ IDE, permitindo uso por desenvolvedores com deficiência visual.</p>
+        <p class="home-project-lang">Python · Acessibilidade</p>
+      </a>
+
+      <a href="https://github.com/dovalerio/blind-dev-setup"
+         class="home-project"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="blind-dev-setup — ver no GitHub (abre em nova aba)">
+        <p class="home-project-name">blind-dev-setup</p>
+        <p class="home-project-desc">Dicionários do NVDA e scripts de configuração para desenvolvedores com deficiência visual no Windows.</p>
+        <p class="home-project-lang">PowerShell · Acessibilidade</p>
+      </a>
+
+      <a href="https://github.com/dovalerio/foxbit-trade-bot"
+         class="home-project"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="foxbit-trade-bot — ver no GitHub (abre em nova aba)">
+        <p class="home-project-name">foxbit-trade-bot</p>
+        <p class="home-project-desc">Bot automatizado para execução de trades na plataforma Foxbit, com lógica de negociação configurável.</p>
+        <p class="home-project-lang">Kotlin · Automação · Backend</p>
+      </a>
+
+      <a href="https://github.com/dovalerio/multi-exchange-quote-engine"
+         class="home-project"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="multi-exchange-quote-engine — ver no GitHub (abre em nova aba)">
+        <p class="home-project-name">multi-exchange-quote-engine</p>
+        <p class="home-project-desc">Engine de coleta e agregação de cotações em múltiplas exchanges de criptomoedas simultaneamente.</p>
+        <p class="home-project-lang">Kotlin · Backend · Microsserviços</p>
+      </a>
+
+      <a href="https://github.com/dovalerio/cars-api"
+         class="home-project"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="cars-api — ver no GitHub (abre em nova aba)">
+        <p class="home-project-name">cars-api</p>
+        <p class="home-project-desc">API REST para gerenciamento de veículos, desenvolvida com Java e Spring Boot.</p>
+        <p class="home-project-lang">Java · Spring Boot · Backend</p>
+      </a>
+
+      <a href="https://github.com/dovalerio/gerador-diagramas"
+         class="home-project"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="gerador-diagramas — ver no GitHub (abre em nova aba)">
+        <p class="home-project-name">gerador-diagramas</p>
+        <p class="home-project-desc">Aplicação para geração de diagramas a partir de templates definidos em arquivos YAML.</p>
+        <p class="home-project-lang">Python · Automação</p>
+      </a>
+
+    </div>
+  </section>
+
+  <hr class="home-divider" aria-hidden="true">
+
+  <%# ── Rodapé ───────────────────────────────────────────── %>
+  <footer class="home-footer" role="contentinfo">
+    <p>&copy; <%= Time.current.year %> Danilo Valerio</p>
+  </footer>
+
+</div>
