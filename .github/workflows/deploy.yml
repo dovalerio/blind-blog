@@ -133,7 +133,7 @@ jobs:
             sleep 30
             RETRIES=6
             for i in $(seq 1 $RETRIES); do
-              STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3001/blog/up 2>/dev/null || echo "000")
+              STATUS=$(curl -s -o /dev/null -w "%{http_code}" -H "Host: dovalerio.dev.br" http://127.0.0.1:3001/blog/up 2>/dev/null || echo "000")
               if [ "$STATUS" = "200" ]; then
                 echo "   ✅ Health check OK (HTTP $STATUS) na tentativa $i/$RETRIES"
                 break
