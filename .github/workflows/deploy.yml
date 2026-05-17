@@ -90,7 +90,7 @@ jobs:
 
             APP_DIR="/home/deploy/apps/blind-blog"
             BACKUP_TS=$(date +%Y%m%d_%H%M%S)
-            BACKUP_DIR="/root/backups/blind-blog"
+            BACKUP_DIR="$HOME/backups/blind-blog"
 
             # ── 0. Validar variáveis obrigatórias no .env ──────────────
             echo "▶ [0/5] Validando .env..."
