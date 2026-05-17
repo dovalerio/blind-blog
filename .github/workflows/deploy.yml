@@ -122,11 +122,11 @@ jobs:
 
             # ── 3. Build e deploy com Docker Compose ──────────────────
             echo "▶ [3/5] Docker Compose build + deploy..."
-            docker compose up -d --build --remove-orphans
+            sudo docker compose up -d --build --remove-orphans
 
             # ── 4. Limpeza de imagens antigas ─────────────────────────
             echo "▶ [4/5] Removendo imagens obsoletas..."
-            docker image prune -f
+            sudo docker image prune -f
 
             # ── 5. Health check com retentativas ──────────────────────
             echo "▶ [5/5] Health check (aguardando app inicializar)..."
