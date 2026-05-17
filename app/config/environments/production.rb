@@ -53,5 +53,5 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  config.hosts = [ "dovalerio.dev.br", "www.dovalerio.dev.br", "dovalerio.me", "www.dovalerio.me" ]
+  config.hosts = [ "dovalerio.dev.br", "www.dovalerio.dev.br", "dovalerio.me", "www.dovalerio.me", "blog.dovalerio.me" ]
 end
