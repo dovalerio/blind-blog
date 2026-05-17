@@ -94,7 +94,7 @@ jobs:
 
             # ── 0. Validar variáveis obrigatórias no .env ──────────────
             echo "▶ [0/5] Validando .env..."
-            REQUIRED="RAILS_ENV SECRET_KEY_BASE POSTGRES_USER POSTGRES_PASSWORD POSTGRES_DB DATABASE_URL"
+            REQUIRED="RAILS_ENV SECRET_KEY_BASE"
             MISSING=""
             for var in $REQUIRED; do
               grep -q "^${var}=" "$APP_DIR/.env" 2>/dev/null || MISSING="$MISSING $var"

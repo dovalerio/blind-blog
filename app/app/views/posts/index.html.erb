@@ -1,31 +1,30 @@
 <% content_for :title, "Posts" %>
 
 <section aria-labelledby="posts-heading">
-  <h1 id="posts-heading">Posts</h1>
+  <h1 id="posts-heading" class="mb-4">Posts</h1>
 
   <% if @posts.empty? %>
     <p>Nenhum post publicado ainda.</p>
   <% else %>
-    <ol class="posts-list" role="list" aria-label="Lista de posts publicados">
+    <ol class="list-unstyled d-flex flex-column gap-4" role="list" aria-label="Lista de posts publicados">
       <% @posts.each do |post| %>
         <li>
-          <article class="post-card" aria-labelledby="post-title-<%= post.id %>">
-            <h2 id="post-title-<%= post.id %>" class="post-card__title">
-              <%= link_to post.title, post_path(post) %>
-            </h2>
-            <% if post.published_at.present? %>
-              <p class="post-card__meta">
-                <time datetime="<%= post.published_at.iso8601 %>">
-                  <%= l(post.published_at, format: :long) %>
-                </time>
+          <article class="card" aria-labelledby="post-title-<%= post.id %>">
+            <div class="card-body">
+              <h2 id="post-title-<%= post.id %>" class="card-title h5">
+                <%= link_to post.title, post_path(post), class: "text-decoration-none stretched-link" %>
+              </h2>
+              <% if post.published_at.present? %>
+                <p class="card-subtitle text-muted small mb-2">
+                  <time datetime="<%= post.published_at.iso8601 %>">
+                    <%= l(post.published_at, format: :long) %>
+                  </time>
+                </p>
+              <% end %>
+              <p class="card-text">
+                <%= truncate(post.content, length: 200, separator: " ") %>
               </p>
-            <% end %>
-            <p class="post-card__excerpt">
-              <%= truncate(post.content, length: 200, separator: " ") %>
-            </p>
-            <p>
-              <%= link_to "Ler post: #{post.title}", post_path(post), class: "read-more", aria: { label: "Ler post: #{post.title}" } %>
-            </p>
+            </div>
           </article>
         </li>
       <% end %>

@@ -2,7 +2,7 @@ FROM ruby:3.3-slim
 
 RUN apt-get update -qq && apt-get install -y \
   build-essential \
-  libpq-dev \
+  libsqlite3-dev \
   libyaml-dev \
   nodejs \
   npm \
@@ -21,7 +21,7 @@ COPY app/ .
 
 RUN bundle exec bootsnap precompile app/ lib/
 
-RUN mkdir -p tmp/pids tmp/sockets log public/assets
+RUN mkdir -p tmp/pids tmp/sockets log public/assets /data
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh

@@ -1,10 +1,10 @@
 <%= form_with(model: [:admin, post], class: "post-form") do |f| %>
   <% if post.errors.any? %>
-    <div role="alert" class="form-errors" aria-labelledby="errors-heading">
-      <h2 id="errors-heading">
+    <div role="alert" class="alert alert-danger" aria-labelledby="errors-heading">
+      <h2 id="errors-heading" class="h6 mb-2">
         <%= pluralize(post.errors.count, "erro encontrado", "erros encontrados") %>
       </h2>
-      <ul>
+      <ul class="mb-0 ps-3">
         <% post.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
@@ -12,37 +12,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title, "Título", class: "field__label" %>
+  <div class="mb-3">
+    <%= f.label :title, "Título", class: "form-label fw-semibold" %>
     <%= f.text_field :title,
-          class: "field__input",
+          class: "form-control#{ ' is-invalid' if post.errors[:title].any? }",
           aria: { required: "true", describedby: post.errors[:title].any? ? "title-error" : nil },
           required: true,
           autofocus: true %>
     <% if post.errors[:title].any? %>
-      <span id="title-error" class="field__error" role="alert"><%= post.errors[:title].first %></span>
+      <div id="title-error" class="invalid-feedback" role="alert"><%= post.errors[:title].first %></div>
     <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :content, "Conteúdo", class: "field__label" %>
+  <div class="mb-3">
+    <%= f.label :content, "Conteúdo", class: "form-label fw-semibold" %>
     <%= f.text_area :content,
-          class: "field__textarea",
+          class: "form-control#{ ' is-invalid' if post.errors[:content].any? }",
           rows: 15,
           aria: { required: "true" },
           required: true %>
     <% if post.errors[:content].any? %>
-      <span class="field__error" role="alert"><%= post.errors[:content].first %></span>
+      <div class="invalid-feedback" role="alert"><%= post.errors[:content].first %></div>
     <% end %>
   </div>
 
-  <div class="field field--checkbox">
-    <%= f.check_box :published, class: "field__checkbox", id: "post_published" %>
-    <%= f.label :published, "Publicar post", class: "field__label field__label--checkbox", for: "post_published" %>
+  <div class="mb-4 form-check">
+    <%= f.check_box :published, class: "form-check-input", id: "post_published" %>
+    <%= f.label :published, "Publicar post", class: "form-check-label", for: "post_published" %>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit post.new_record? ? "Criar post" : "Salvar alterações", class: "btn btn--primary" %>
-    <%= link_to "Cancelar", admin_posts_path, class: "btn btn--secondary" %>
+  <div class="d-flex gap-3 align-items-center flex-wrap">
+    <%= f.submit post.new_record? ? "Criar post" : "Salvar alterações", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", admin_posts_path, class: "btn btn-outline-secondary" %>
   </div>
 <% end %>
