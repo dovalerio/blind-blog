@@ -114,9 +114,8 @@ jobs:
 
             # ── 2. Sincronizar código com origin/main ──────────────────
             echo "▶ [2/5] Sincronizando código (git reset --hard origin/main)..."
-            mkdir -p ~/.ssh
-            ssh-keyscan -t rsa,ecdsa,ed25519 github.com 2>/dev/null >> ~/.ssh/known_hosts
             cd "$APP_DIR"
+            git remote set-url origin https://github.com/dovalerio/blind-blog.git
             git fetch --prune origin
             git reset --hard origin/main
             echo "   Commit: $(git log --oneline -1)"
