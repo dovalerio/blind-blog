@@ -1,6 +1,6 @@
 module Api
   class PostsController < BaseController
-    before_action :set_post, only: [:show, :update, :destroy]
+    before_action :set_post, only: [ :show, :update, :destroy ]
 
     def index
       posts = Post.order(created_at: :desc)
